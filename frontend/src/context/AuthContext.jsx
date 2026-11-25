@@ -1,88 +1,120 @@
-/**
- * Authentication Context & Provider
- * Manages user session, JWT token, role, and persistent auth state.
- */
-import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import { login as apiLogin } from '../api/auth.js';
-import { clearSession, TOKEN_STORAGE_KEY, USER_STORAGE_KEY } from '../api/client.js';
-import { ROLES } from '../constants.js';
+
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useCallback,
+} from 'react';
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  signOut,
+} from 'firebase/auth';
+import { auth } from '../firebase.js';
+import client from '../api/client.js';
 
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-  const [token, setToken] = useState(() => {
-    if (typeof window === 'undefined') return null;
-    return localStorage.getItem(TOKEN_STORAGE_KEY);
-  });
+  const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const [user, setUser] = useState(() => {
-    if (typeof window === 'undefined') return null;
-    try {
-      const stored = localStorage.getItem(USER_STORAGE_KEY);
-      return stored ? JSON.parse(stored) : null;
-    } catch {
-      return null;
-    }
-  });
-
-  const [isLoading, setIsLoading] = useState(false);
-
-  // Sync session on mount / storage events
   useEffect(() => {
-    function handleStorageChange(e) {
-      if (e.key === TOKEN_STORAGE_KEY) {
-        setToken(e.newValue);
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      if (!firebaseUser) {
+        setUser(null);
+        setIsLoading(false);
+        return;
       }
-      if (e.key === USER_STORAGE_KEY) {
-        try {
-          setUser(e.newValue ? JSON.parse(e.newValue) : null);
-        } catch {
-          setUser(null);
-        }
+
+      try {
+        const token = await firebaseUser.getIdToken();
+        const response = await client.get('/me', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setUser({
+          uid: firebaseUser.uid,
+          email: firebaseUser.email,
+          name: firebaseUser.displayName || response.user?.name || '',
+          role: response.user?.role || 'citizen',
+        });
+      } catch (error) {
+        console.error('Profile loading failed:', error);
+        setUser(null);
+      } finally {
+        setIsLoading(false);
       }
-    }
-    window.addEventListener('storage', handleStorageChange);
-    return () => window.removeEventListener('storage', handleStorageChange);
+    });
+
+    return unsubscribe;
   }, []);
 
-  const login = useCallback(async (credentials) => {
-    setIsLoading(true);
-    try {
-      const result = await apiLogin(credentials);
-      setToken(result.token);
-      setUser(result.user);
-      return result;
-    } finally {
-      setIsLoading(false);
-    }
+  const login = useCallback(async ({ email, password }) => {
+    const result = await signInWithEmailAndPassword(auth, email, password);
+    const token = await result.user.getIdToken();
+    const profile = await client.get('/me', {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    const currentUser = {
+      uid: result.user.uid,
+      email: result.user.email,
+      name: result.user.displayName || profile.user?.name || '',
+      role: profile.user?.role || 'citizen',
+    };
+    setUser(currentUser);
+    return { user: currentUser };
   }, []);
 
-  const logout = useCallback(() => {
-    clearSession();
-    setToken(null);
+  const register = useCallback(async ({ name, email, password }) => {
+    const result = await createUserWithEmailAndPassword(auth, email, password);
+    await updateProfile(result.user, { displayName: name });
+    const token = await result.user.getIdToken();
+
+    const profile = await client.post('/register', { name }, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    const currentUser = {
+      uid: result.user.uid,
+      email: result.user.email,
+      name,
+      role: profile.user?.role || 'citizen',
+    };
+    setUser(currentUser);
+    return { user: currentUser };
+  }, []);
+
+  const logout = useCallback(async () => {
+    await signOut(auth);
     setUser(null);
   }, []);
 
-  const value = {
-    user,
-    token,
-    isAuthenticated: Boolean(token && user),
-    role: user?.role || ROLES.CITIZEN,
-    isLoading,
-    login,
-    logout,
-  };
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        token: null,
+        isAuthenticated: Boolean(user),
+        role: user?.role || 'citizen',
+        isLoading,
+        login,
+        register,
+        logout,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
 export function useAuth() {
   const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
+  if (!context) throw new Error('useAuth must be used within AuthProvider');
   return context;
 }
 
 export default AuthContext;
-
