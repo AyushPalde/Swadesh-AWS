@@ -1,3 +1,4 @@
+
 {
   "name": "swadesh-backend",
   "version": "0.1.0",
@@ -16,7 +17,8 @@
     "@aws-sdk/client-dynamodb": "^3.1158.0",
     "@aws-sdk/client-s3": "^3.1158.0",
     "@aws-sdk/lib-dynamodb": "^3.1158.0",
-    "@aws-sdk/s3-request-presigner": "^3.1158.0"
+    "@aws-sdk/s3-request-presigner": "^3.1158.0",
+    "google-auth-library": "^10.3.0"
   },
   "devDependencies": {
     "archiver": "^8.0.0",
