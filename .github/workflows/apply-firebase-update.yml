@@ -1,0 +1,50 @@
+
+name: Apply Firebase project update
+
+on:
+  push:
+    paths:
+      - 'SWADESH-Firebase-Integration.zip'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-project:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Extract updated project
+        run: |
+          mkdir -p "$RUNNER_TEMP/swadesh"
+          unzip -q SWADESH-Firebase-Integration.zip -d "$RUNNER_TEMP/swadesh"
+
+          test -f "$RUNNER_TEMP/swadesh/Swadesh-AWS-main/backend/src/index.mjs"
+          test -f "$RUNNER_TEMP/swadesh/Swadesh-AWS-main/frontend/package.json"
+
+      - name: Replace existing project files
+        run: |
+          rsync -a --delete \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            "$RUNNER_TEMP/swadesh/Swadesh-AWS-main/" ./
+
+          rm -f SWADESH-Firebase-Integration.zip
+
+      - name: Commit updated project
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -A
+
+          if ! git diff --cached --quiet; then
+            git commit -m "Integrate Firebase Authentication"
+            git push origin HEAD:${{ github.ref_name }}
+          fi
