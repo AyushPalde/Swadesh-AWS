@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-container-low": "#f6f3ee", "on-primary-fixed-variant": "#004f50", "surface-dim": "#dcdad5", "on-tertiary": "#ffffff", "on-primary": "#ffffff", "primary-container": "#0f5c5c", "surface-container-lowest": "#ffffff", "on-secondary-container": "#684000", "on-primary-container": "#90d2d1", "tertiary": "#003f62", "secondary": "#855300", "primary-fixed-dim": "#90d2d1", "on-error": "#ffffff", "primary": "#004343", "secondary-container": "#fea619", "inverse-primary": "#90d2d1", "on-background": "#1c1c19", "inverse-surface": "#31302d", "surface-variant": "#e5e2dd", "primary-fixed": "#aceeee", "on-surface": "#1c1c19", "secondary-fixed": "#ffddb8", "on-surface-variant": "#3f4948", "surface": "#fcf9f4", "on-secondary": "#ffffff", "outline-variant": "#bfc8c8", "outline": "#6f7978", "on-tertiary-container": "#92ccff", "surface-container-high": "#ebe8e3", "on-primary-fixed": "#002020", "secondary-fixed-dim": "#ffb95f", "tertiary-container": "#005785", "on-error-container": "#93000a", "surface-bright": "#fcf9f4", "background": "#fcf9f4", "on-secondary-fixed": "#2a1700", "surface-container": "#f0ede9", "surface-tint": "#216868", "tertiary-fixed-dim": "#93ccff", "error-container": "#ffdad6", "on-tertiary-fixed-variant": "#004b73", "error": "#ba1a1a", "surface-container-highest": "#e5e2dd", "tertiary-fixed": "#cce5ff", "on-secondary-fixed-variant": "#653e00", "inverse-on-surface": "#f3f0eb", "on-tertiary-fixed": "#001d31" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin-md": "1.5rem", "margin": "1rem", "gutter": "1.5rem", "space-md": "1rem", "space-xl": "2.5rem", "space-lg": "1.5rem", "gutter-lg": "2rem", "margin-sm": "1rem", "margin-lg": "2.5rem", "gutter-sm": "1rem", "space-sm": "0.5rem", "space-xs": "0.25rem" }, fontFamily: { "body-lg": ["Plus Jakarta Sans"], "title-md": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "display-hero-mobile": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "display-hero": ["Plus Jakarta Sans"] }, fontSize: { "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }], "title-md": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }], "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-hero-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }], "display-hero": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.03em", "fontWeight": "800" }] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-primary z-50 flex flex-col justify-between shadow-[0_8px_24px_-4px_rgba(44,34,20,0.12)]"><div class="flex flex-col flex-1 min-h-0"><div class="h-16 flex items-center px-margin-md gap-space-sm bg-primary/40"><div class="w-9 h-9 rounded-lg bg-surface-container-lowest flex items-center justify-center shadow-[0_2px_8px_-2px_rgba(44,34,20,0.05)]"><span class="material-symbols-outlined text-primary text-[20px]">location_city</span></div><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm font-bold text-on-primary tracking-tight">SWADESH</span><span class="w-2 h-2 rounded-full bg-secondary-container"></span></div><span class="font-label-sm text-label-sm text-on-primary-container tracking-wider uppercase">Municipal Civic Portal</span></div></div><div class="px-margin-md py-space-sm"><div class="px-space-sm py-space-xs rounded-lg bg-surface-container-lowest/10 flex items-center justify-between text-on-primary-container"><span class="font-label-sm text-label-sm font-semibold tracking-wide uppercase">Bandra-Andheri Division</span><span class="font-label-sm text-label-sm bg-secondary text-on-secondary px-space-xs py-0.5 rounded-full font-bold">Live</span></div></div><nav class="flex-1 px-space-md py-space-sm space-y-space-xs overflow-y-auto" data-active-classes="bg-surface-container-lowest text-primary font-bold shadow-[0_2px_8px_-2px_rgba(44,34,20,0.05)]"><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-primary/80 hover:bg-surface-container-lowest/10 hover:text-on-primary transition-all" data-path="overview" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">dashboard</span><span class="font-label-lg text-label-lg">Overview</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-primary/80 hover:bg-surface-container-lowest/10 hover:text-on-primary transition-all" data-path="pending-verification" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">verified_user</span><span class="font-label-lg text-label-lg">Pending Verification</span></div><span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold px-space-sm py-0.5 rounded-full">28</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-primary/80 hover:bg-surface-container-lowest/10 hover:text-on-primary transition-all" data-path="all-issues" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">assignment_late</span><span class="font-label-lg text-label-lg">All Issues</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-primary/80 hover:bg-surface-container-lowest/10 hover:text-on-primary transition-all" data-path="departments" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">account_balance</span><span class="font-label-lg text-label-lg">Departments</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-primary/80 hover:bg-surface-container-lowest/10 hover:text-on-primary transition-all" data-path="reports" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">analytics</span><span class="font-label-lg text-label-lg">Reports</span></div></a></nav></div><div class="p-space-md bg-primary-container/40"><div class="flex items-center gap-space-sm mb-space-sm"><div class="w-10 h-10 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary font-title-md text-title-md font-bold shadow-[0_2px_8px_-2px_rgba(44,34,20,0.05)]">NS</div><div class="flex flex-col flex-1 min-w-0"><div class="flex items-center justify-between"><span class="font-label-lg text-label-lg font-bold text-on-primary truncate">JE Nilesh Sawant</span></div><span class="font-label-sm text-label-sm text-on-primary-container truncate">Sub-Engineer, Ward K-West</span><div class="flex items-center gap-space-xs mt-0.5"><span class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span><span class="font-label-sm text-label-sm text-secondary-fixed font-bold tracking-wider uppercase">Authority</span></div></div></div><div class="flex items-center gap-space-xs"><a class="w-full flex items-center justify-center gap-space-xs py-space-xs px-space-sm rounded-lg bg-surface-container-lowest/10 text-on-primary hover:bg-surface-container-lowest/20 font-label-md text-label-md transition-all" data-path="login" href="#"><span class="material-symbols-outlined text-[16px]">logout</span><span>Sign Out</span></a></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-gutter-lg"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-primary text-[20px]">hub</span><span class="font-label-lg text-label-lg font-bold text-on-surface">BMC Ward K-West</span><span class="text-outline-variant font-body-sm text-body-sm">•</span><span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Andheri &amp; Juhu Zone</span></div></div><div class="flex items-center gap-space-md"><div class="relative"><span class="material-symbols-outlined absolute left-space-sm top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span><input class="w-72 pl-9 pr-space-md py-space-xs rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary placeholder:text-outline" placeholder="Search complaints, ward tokens, citizen PRNs..." type="text"/></div><div class="relative"><button class="flex items-center gap-space-xs px-space-sm py-space-xs rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-[18px] text-on-surface-variant">date_range</span><span>Last 7 Days (Oct 08 - Oct 15)</span><span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span></button></div><div class="relative flex items-center"><button class="relative p-space-xs rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error"></span></button></div><div class="flex items-center pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen px-gutter-lg py-gutter"><div class="flex flex-col w-full">
+<!-- Sub-Header / Command Strip -->
+<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-space-md mb-space-lg">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs text-on-surface-variant">
+<a class="font-label-md text-label-md hover:text-primary transition-colors" href="#">Grievance Central</a>
+<span class="font-body-sm text-body-sm text-outline-variant">/</span>
+<a class="font-label-md text-label-md hover:text-primary transition-colors" href="#">Ward K-West</a>
+<span class="font-body-sm text-body-sm text-outline-variant">/</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">#BMC-KW-8842</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest font-label-sm text-label-sm font-mono text-outline">ISS-8F3A</span>
+</div>
+<div class="flex items-center gap-space-md flex-wrap">
+<div class="inline-flex items-center gap-space-xs px-space-md py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-label-md text-label-md font-bold">Verified • Ready for Assignment</span>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">timer</span>
+<span>Statutory SLA: <strong>18h 45m remaining</strong></span>
+</div>
+</div>
+</div>
+<!-- Quick Tool Actions -->
+<div class="flex items-center gap-space-xs self-start md:self-auto">
+<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors shadow-sm font-label-md text-label-md" type="button">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">print</span>
+<span>Print Dossier</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors shadow-sm font-label-md text-label-md" type="button">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">content_copy</span>
+<span>Mark Duplicate</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container-lowest text-error hover:bg-error-container/40 transition-colors shadow-sm font-label-md text-label-md" type="button">
+<span class="material-symbols-outlined text-[18px]">share_location</span>
+<span>Jurisdiction Outlier</span>
+</button>
+</div>
+</div>
+<!-- Primary 2-Column Responsive Workspace -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg items-start">
+<!-- LEFT COLUMN: Dossier, Coordinates, Timeline (7 of 12 cols / ~60%) -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<!-- Card 1: Issue Dossier -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-space-lg flex flex-col gap-space-md">
+<!-- Photographic Evidence Banner -->
+<div class="relative w-full rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-72 object-cover" data-alt="Close-up forensic shot of a severe, ragged asphalt road crater filled with muddy monsoon runoff under concrete flyover pillar fourteen, orange traffic cone visible in warm natural morning light, sharp focus, documenting urban infrastructure failure in Mumbai" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvNpvH8zTSBAiaDZNLlXTeyhBVTVbRvZJDVRCHmSDT93Mxrk59TqdGLqCdJ5NYUe4OlcbX9ZkfAHm8GAZkaX5gWVxXEI6_Jy1_9tq3bKp4Cc_l2J45YnkUeUIrAxc6GFTDVKjvRVe7ni-lWTN6bwUNGIZLayC2ZOR9jTmyU3TJex74ptHvo9hd49GfZw3GMEWv-V4a0VpPsDARF4_NVOUmgv3qBjfHpxD4uLSSUIo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<!-- Image EXIF & Sensor Meta Pill Overlay -->
+<div class="absolute top-space-md left-space-md flex flex-wrap gap-space-xs">
+<span class="flex items-center gap-space-xs px-space-sm py-1 rounded bg-black/60 backdrop-blur-md text-surface font-label-sm text-label-sm font-mono">
+<span class="material-symbols-outlined text-[14px] text-primary-fixed">verified</span>
+<span>Camera GPS Validated</span>
+</span>
+<span class="flex items-center gap-space-xs px-space-sm py-1 rounded bg-black/60 backdrop-blur-md text-surface font-label-sm text-label-sm font-mono">
+<span class="material-symbols-outlined text-[14px]">my_location</span>
+<span>19.1197° N, 72.8468° E</span>
+</span>
+</div>
+<div class="absolute bottom-space-md left-space-md right-space-md flex items-center justify-between text-surface font-label-sm text-label-sm font-mono">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+<span>Captured: 14 Oct 2025, 08:30 IST</span>
+</div>
+<span class="text-white/80">BMC Citizen App v4.2.1 • Cryptographic SHA-256</span>
+</div>
+</div>
+<!-- Issue Badges & Title -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="px-space-sm py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-bold">
+              Roads &amp; Infrastructure
+            </span>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-medium">
+              Potholes &amp; Structural Subsidence
+            </span>
+<span class="flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+              Priority: High
+            </span>
+<span class="flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+              Verified
+            </span>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface mt-space-xs">
+            Deep dangerous pothole near Andheri Subway causing severe two-wheeler skids
+          </h1>
+</div>
+<!-- Citizen Narrative -->
+<div class="bg-surface-container-low rounded-lg p-space-md">
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+            Water accumulation has obscured a 1.5 ft crater right under the flyover pedestrian crossing on SV Road near Andheri Subway junction. Multiple scooter riders slipped during morning peak hours. Needs urgent cold-mix asphalt patch or barricading before evening traffic rush. Hazard directly endangers two-wheelers and pedestrians.
+          </p>
+</div>
+<!-- Reporter Metadata & Community Endorsement Bar -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md pt-space-xs">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary font-title-md text-title-md font-bold">
+              AM
+            </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Aarav Mehta</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary" title="DigiLocker KYC Authenticated">verified</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">DigiLocker Verified Resident • Ward K-West (Zone 4)</span>
+</div>
+</div>
+<!-- Social Validation Chip -->
+<div class="flex items-center gap-space-xs bg-secondary-fixed/50 px-space-md py-space-xs rounded-lg self-start sm:self-auto">
+<span class="material-symbols-outlined text-secondary text-[20px]" style="font-variation-settings: 'FILL' 1;">thumb_up</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-secondary-fixed">128 Citizens Backed</span>
+<span class="font-label-sm text-label-sm text-on-secondary-fixed-variant">Community Upvotes</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2: Geospatial & Cadastral Verification -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-space-lg flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">pin_drop</span>
+<h2 class="font-title-md text-title-md font-bold text-on-surface">Geospatial Ward Jurisdiction</h2>
+</div>
+<span class="px-space-sm py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-bold">
+            BMC Ward K-West Confirmed
+          </span>
+</div>
+<!-- Location Metadata Details -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md bg-surface-container-low p-space-md rounded-lg">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">Physical Landmark Address</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface mt-0.5 block">
+              Near SV Road Flyover Pillar #14, Andheri Subway Junction, Andheri West, Mumbai - 400058
+            </span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">GPS Coordinates &amp; Division</span>
+<span class="font-body-md text-body-md font-mono text-on-surface mt-0.5 block">
+              19.1197° N, 72.8468° E
+            </span>
+<span class="font-label-sm text-label-sm text-primary font-medium">Zone 4 Maintenance Grid #44B</span>
+</div>
+</div>
+<!-- GIS Styled Map Container -->
+<div class="w-full h-52 rounded-lg bg-surface-container relative overflow-hidden bg-cover bg-center flex items-center justify-center" data-location="SV Road Andheri Subway, Mumbai, India" style="">
+<div class="absolute inset-0 bg-primary/10"></div>
+<!-- Spatial Indicator Pin Overlay -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-on-primary shadow-lg animate-bounce">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+</div>
+<div class="mt-1 px-space-sm py-0.5 rounded bg-inverse-surface text-inverse-on-surface font-label-sm text-label-sm font-mono shadow-md">
+              Pillar #14 (SV Road)
+            </div>
+</div>
+<!-- GIS Cadastral Perimeter Badge -->
+<div class="absolute bottom-space-sm right-space-sm bg-surface-container-lowest/90 backdrop-blur-sm px-space-sm py-1 rounded text-on-surface font-label-sm text-label-sm flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span>Ward Cadastre Boundary Valid</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Statutory Audit Trail & Status History -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-space-lg flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">history_edu</span>
+<h2 class="font-title-md text-title-md font-bold text-on-surface">Official Audit Trail</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Public Record Log • RTS Sec 4(1)</span>
+</div>
+<!-- Vertical Timeline Cadence -->
+<div class="relative pl-6 space-y-space-lg">
+<!-- Continuous Connection Rule Line -->
+<div class="absolute left-2.5 top-3 bottom-3 w-0.5 bg-surface-container-highest"></div>
+<!-- Step 1 in Trail -->
+<div class="relative flex items-start gap-space-md">
+<div class="absolute -left-6 mt-1 w-5 h-5 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[13px]">check</span>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-0.5">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">Report Submitted by Citizen</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">14 Oct 2025, 08:30 IST</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Aarav Mehta (Citizen App Token #CIT-491)</span>
+<p class="font-body-md text-body-md text-on-surface mt-1 bg-surface-container-low p-space-sm rounded">
+                Photo geotag validated via civic mobile app. SHA-256 verified and routed to Andheri Control Desk.
+              </p>
+</div>
+</div>
+<!-- Step 2 in Trail -->
+<div class="relative flex items-start gap-space-md">
+<div class="absolute -left-6 mt-1 w-5 h-5 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[13px]">smart_toy</span>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-0.5">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">Auto-Triage &amp; AI Classification</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">14 Oct 2025, 08:32 IST</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">System Automated Pipeline (SWADESH ML Engine)</span>
+<p class="font-body-md text-body-md text-on-surface mt-1 bg-surface-container-low p-space-sm rounded">
+                Severity rated 8.4/10 due to high two-wheeler density corridor during monsoon precipitation window. Escalated to JE Ward Queue.
+              </p>
+</div>
+</div>
+<!-- Step 3 in Trail -->
+<div class="relative flex items-start gap-space-md">
+<div class="absolute -left-6 mt-1 w-5 h-5 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[13px]">person_check</span>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-0.5">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">Field Verification Completed</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">14 Oct 2025, 11:15 IST</span>
+</div>
+<span class="font-body-sm text-body-sm text-primary font-bold">Sub-Engineer JE Nilesh Sawant (Ward K-West)</span>
+<p class="font-body-md text-body-md text-on-surface mt-1 bg-surface-container-low p-space-sm rounded">
+                Physical site inspection confirmed 1.5 ft asphalt depression. Classified as High Priority road hazard. Approved for immediate cold-mix patching.
+              </p>
+</div>
+</div>
+<!-- Step 4 in Trail (Pending Action) -->
+<div class="relative flex items-start gap-space-md">
+<div class="absolute -left-6 mt-1 w-5 h-5 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[13px]">engineering</span>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-0.5">
+<span class="font-label-lg text-label-lg font-bold text-secondary">Awaiting Departmental Dispatch &amp; Crew Assignment</span>
+<span class="px-space-xs py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold">Active Phase</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Pending Sub-Engineer Nilesh Sawant work-order issuance.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Action Panel & Workflow Execution (5 of 12 cols / ~40%) -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg sticky top-20">
+<!-- Primary Action Card Container -->
+<div class="rounded-xl bg-surface-container-lowest shadow-md p-space-lg flex flex-col gap-space-md">
+<!-- Header -->
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<h2 class="font-title-md text-title-md font-bold text-on-surface">Take Action</h2>
+<span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-mono">
+              Work Order Flow
+            </span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Municipal Redressal Workflow (3 Sequential Stages)</span>
+</div>
+<!-- Horizontal Step Meter -->
+<div class="flex items-center gap-space-xs py-space-xs">
+<div class="h-2 flex-1 rounded-full bg-primary" title="Step 1: Verified"></div>
+<div class="h-2 flex-1 rounded-full bg-secondary-container" title="Step 2: Assign (Active)"></div>
+<div class="h-2 flex-1 rounded-full bg-surface-container-highest" title="Step 3: Update Progress (Locked)"></div>
+</div>
+<!-- STEP 1: Verify (COMPLETED STATE) -->
+<div class="rounded-lg bg-primary-fixed/30 p-space-md flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-lg text-label-lg font-bold text-primary">Step 1: Verification Completed</span>
+</div>
+<button class="text-primary hover:underline font-label-sm text-label-sm font-bold" type="button">
+              Edit
+            </button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">
+            Physically inspected &amp; approved as <strong>High Priority</strong> by JE Nilesh Sawant (14 Oct, 11:15 IST). Depth verified &gt; 1 ft.
+          </p>
+</div>
+<!-- STEP 2: Assign (ACTIVE STATE) -->
+<div class="rounded-lg bg-surface-container-low p-space-md flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm font-bold">
+                2
+              </span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">Step 2: Assign Redressal Crew</span>
+</div>
+<span class="px-space-sm py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+              In Progress
+            </span>
+</div>
+<!-- Form Control: Department Picker -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm font-bold text-on-surface-variant uppercase tracking-wider" for="dept-select">
+              Department Routing
+            </label>
+<div class="relative">
+<select class="w-full pl-space-md pr-8 py-space-sm rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none appearance-none" id="dept-select">
+<option selected="" value="roads">Roads &amp; Infrastructure (Assigned)</option>
+<option value="sanitation">Sanitation &amp; Waste Management</option>
+<option value="electrical">Street Lighting &amp; Electrical</option>
+<option value="water">Water Supply &amp; Drainage</option>
+<option value="gardens">Parks &amp; Public Spaces</option>
+</select>
+<span class="material-symbols-outlined absolute right-space-sm top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">
+                expand_more
+              </span>
+</div>
+</div>
+<!-- Form Control: Assigned Officer / Lead Field Crew -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm font-bold text-on-surface-variant uppercase tracking-wider" for="lead-officer">
+              Assigned Field Officer &amp; Crew
+            </label>
+<div class="relative">
+<input class="w-full px-space-md py-space-sm rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none placeholder:text-outline" id="lead-officer" type="text" value="JE Nilesh Sawant / Gangman Crew Alpha-4 (Roads Maintenance Div-3)"/>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Includes 4 crew personnel, 1 thermal asphalt compactor</span>
+</div>
+<!-- Statutory SLA Window Card -->
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-secondary-fixed/40">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">bolt</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-secondary-fixed">Mandated Repair SLA</span>
+<span class="font-label-sm text-label-sm text-on-secondary-fixed-variant">Maharashtra RTS Act 2015</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm font-mono font-bold text-on-secondary-fixed">Within 24 Hours</span>
+</div>
+<!-- Primary Trigger Button: Dispatch -->
+<button class="w-full flex items-center justify-center gap-space-xs py-space-sm px-space-md rounded-lg bg-primary text-on-primary font-label-lg text-label-lg font-bold hover:bg-primary-container shadow-md transition-all active:translate-y-0.5" id="open-dispatch-dialog" type="button">
+<span class="material-symbols-outlined text-[20px]">send_time_extension</span>
+<span>Assign to Roads &amp; Infrastructure</span>
+</button>
+</div>
+<!-- STEP 3: Update Progress (DISABLED / LOCKED STATE) -->
+<div class="rounded-lg bg-surface-container-low/60 p-space-md flex flex-col gap-space-sm opacity-60">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-surface-container-highest text-outline flex items-center justify-center font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+</span>
+<span class="font-label-lg text-label-lg font-bold text-outline">Step 3: Update Progress &amp; Resolve</span>
+</div>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container-highest text-outline font-label-sm text-label-sm">
+              Locked
+            </span>
+</div>
+<!-- Disabled Status Segmentation -->
+<div class="grid grid-cols-2 gap-space-xs p-1 rounded-lg bg-surface-container-highest pointer-events-none">
+<button class="py-1 text-center font-label-sm text-label-sm text-outline font-bold" disabled="" type="button">
+              In Progress
+            </button>
+<button class="py-1 text-center font-label-sm text-label-sm text-outline font-bold" disabled="" type="button">
+              Resolved
+            </button>
+</div>
+<!-- Disabled Textarea -->
+<div class="flex flex-col gap-space-xs pointer-events-none">
+<textarea class="w-full p-space-sm rounded-lg bg-surface-container-lowest text-outline font-body-sm text-body-sm resize-none" disabled="" placeholder="Provide field crew report, asphalt tonnage used, and closure certificate..." rows="2"></textarea>
+</div>
+<!-- Disabled Update Button -->
+<button class="w-full py-space-xs px-space-md rounded-lg bg-surface-container-highest text-outline font-label-md text-label-md cursor-not-allowed" disabled="" type="button">
+            Update Redressal Status
+          </button>
+<span class="font-label-sm text-label-sm text-outline text-center">
+            Unlocks automatically once field crew receives dispatch ticket.
+          </span>
+</div>
+</div>
+<!-- Quick Escalation / SLA Compliance Callout -->
+<div class="rounded-xl bg-surface-container-lowest p-space-md flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Escalation Protocol</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Auto-escalates to Ward Executive Engineer if incomplete by tomorrow 11:00 AM</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Docked / Accessible Modal Confirmation Dialog (Toggleable Preview) -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden items-center justify-center p-space-md" id="dispatch-modal-backdrop">
+<div class="w-full max-w-lg rounded-xl bg-surface-container-lowest shadow-2xl p-space-xl flex flex-col gap-space-lg relative animate-in fade-in zoom-in-95 duration-200">
+<!-- Modal Header -->
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-on-primary-fixed-variant flex-shrink-0">
+<span class="material-symbols-outlined text-[28px]">assignment_turned_in</span>
+</div>
+<div class="flex flex-col flex-1">
+<span class="font-label-sm text-label-sm font-bold text-primary tracking-wider uppercase">Municipal Work Order Confirmation</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface mt-0.5">
+            Dispatch to Roads &amp; Infrastructure?
+          </h3>
+</div>
+</div>
+<!-- Modal Body -->
+<div class="rounded-lg bg-surface-container-low p-space-md flex flex-col gap-space-xs text-on-surface">
+<p class="font-body-md text-body-md leading-relaxed">
+          Grievance Ticket <strong>#BMC-KW-8842</strong> will be dispatched to Sub-Engineer <strong>Nilesh Sawant</strong> and <strong>Road Maintenance Crew #14 (Alpha-4)</strong>.
+        </p>
+<div class="flex items-center gap-space-xs text-primary font-label-sm text-label-sm font-semibold mt-space-xs">
+<span class="material-symbols-outlined text-[16px]">sms</span>
+<span>Automated SMS dispatch order &amp; GIS location pin will be pushed to the crew field terminal.</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center justify-end gap-space-sm pt-space-xs">
+<button class="px-space-lg py-space-sm rounded-lg bg-surface-container text-on-surface font-label-md text-label-md font-semibold hover:bg-surface-container-high transition-colors" id="close-dispatch-dialog" type="button">
+          Cancel
+        </button>
+<button class="flex items-center gap-space-xs px-space-lg py-space-sm rounded-lg bg-primary text-on-primary font-label-md text-label-md font-bold hover:bg-primary-container shadow-md transition-all" id="confirm-dispatch-action" type="button">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Confirm &amp; Dispatch Order</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Interactive JavaScript -->
+<script>
+    (function () {
+      const openBtn = document.getElementById('open-dispatch-dialog');
+      const closeBtn = document.getElementById('close-dispatch-dialog');
+      const modal = document.getElementById('dispatch-modal-backdrop');
+      const confirmBtn = document.getElementById('confirm-dispatch-action');
+
+      if (openBtn && modal) {
+        openBtn.addEventListener('click', function () {
+          modal.classList.remove('hidden');
+          modal.classList.add('flex');
+        });
+      }
+
+      if (closeBtn && modal) {
+        closeBtn.addEventListener('click', function () {
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
+        });
+      }
+
+      if (modal) {
+        modal.addEventListener('click', function (e) {
+          if (e.target === modal) {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+          }
+        });
+      }
+
+      if (confirmBtn) {
+        confirmBtn.addEventListener('click', function () {
+          confirmBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span><span>Dispatching...</span>';
+          setTimeout(function () {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            confirmBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">verified</span><span>Confirm &amp; Dispatch Order</span>';
+            alert('Work Order #WO-8842-R successfully transmitted to Gangman Crew Alpha-4 with 24-hr SLA window.');
+          }, 800);
+        });
+      }
+    })();
+  </script>
+</div></main></div></body></html>

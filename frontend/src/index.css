@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #FCF9F4;
+    color: #1C1C19;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  /* Semantic Status Badge Components */
+  .badge-status-pending {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-full bg-status-pending-bg text-status-pending-text border border-status-pending-border;
+  }
+
+  .badge-status-verified {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-full bg-status-verified-bg text-status-verified-text border border-status-verified-border;
+  }
+
+  .badge-status-assigned {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-full bg-status-assigned-bg text-status-assigned-text border border-status-assigned-border;
+  }
+
+  .badge-status-in-progress {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-full bg-status-in-progress-bg text-status-in-progress-text border border-status-in-progress-border;
+  }
+
+  .badge-status-resolved {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-full bg-status-resolved-bg text-status-resolved-text border border-status-resolved-border;
+  }
+
+  .badge-status-rejected {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-full bg-status-rejected-bg text-status-rejected-text border border-status-rejected-border;
+  }
+}
+

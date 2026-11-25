@@ -1,0 +1,25 @@
+{
+  "name": "swadesh-backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "SWADESH Civic Issue Platform - AWS Lambda Backend",
+  "scripts": {
+    "dev": "node --env-file=.env --watch scripts/dev-server.mjs",
+    "package": "node scripts/package.mjs",
+    "test": "node --test test/**/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.1158.0",
+    "@aws-sdk/client-s3": "^3.1158.0",
+    "@aws-sdk/lib-dynamodb": "^3.1158.0",
+    "@aws-sdk/s3-request-presigner": "^3.1158.0"
+  },
+  "devDependencies": {
+    "archiver": "^8.0.0",
+    "esbuild": "^0.28.2"
+  }
+}

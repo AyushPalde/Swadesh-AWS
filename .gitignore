@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing & Coverage
+coverage/
+*.lcov
+
+# Build Outputs
+dist/
+build/
+out/
+.aws-sam/
+.serverless/
+
+# Environment configuration
+.env
+.env.*
+!.env.example
+
+# Local storage and mock runtime artifacts
+.local-data.json
+.local-uploads
+.local-uploads/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor & IDE directories
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS metadata
+.DS_Store
+Thumbs.db
+Desktop.ini
+

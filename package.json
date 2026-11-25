@@ -1,0 +1,17 @@
+{
+  "name": "swadesh-platform",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "SWADESH - Crowdsourced Civic Grievance Redressal Platform",
+  "scripts": {
+    "dev": "npm --prefix backend run dev",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "seed": "node scripts/seed.mjs",
+    "test": "npm --prefix backend test",
+    "test:backend": "npm --prefix backend test",
+    "test:frontend": "npm --prefix frontend run test:e2e"
+  }
+}
+
