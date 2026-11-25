@@ -138,8 +138,8 @@ function decodeCursor(cursor) {
  * @param {{ email: string, name: string, role: string }} userData
  * @returns {Promise<Object>}
  */
-export async function upsertUser({ email, name, role }) {
-  const userId = generateUserId(email);
+export async function upsertUser({ userId: suppliedUserId, email, name, role }) {
+  const userId = suppliedUserId || generateUserId(email);
   const now = new Date().toISOString();
 
   // Try to preserve existing createdAt if user already exists

@@ -27,9 +27,8 @@ import { getRepo } from './data/index.mjs';
 import { AppError, badRequest, forbidden, notFound, conflict, internalError } from './lib/errors.mjs';
 import { json } from './lib/response.mjs';
 import { logger } from './lib/logger.mjs';
-import { signToken, requireAuth, requireRole } from './lib/auth.mjs';
+import { requireAuth, requireRole } from './lib/auth.mjs';
 import {
-  validateLogin,
   validateCreateIssue,
   validateUploadUrl,
   validateStatusUpdate,
@@ -112,46 +111,39 @@ router.get('/health', async () => {
 });
 
 /**
- * POST /login (public)
- * Body: { name, email, role, passcode? }
- * Returns: { token, user }
- * Authority login requires matching config.AUTHORITY_PASSCODE.
- * Passcodes and tokens are NEVER written to logs.
+ * GET /me (Firebase authenticated)
+ * Returns the server-controlled profile for the signed-in Firebase account.
  */
-router.post('/login', async (req) => {
-  const details = validateLogin(req.body);
-  assertValid(details, 'Invalid login credentials');
+router.get('/me', async (req) => {
+  const user = await requireAuth(req);
+  return json(200, { user });
+});
 
-  const { name, email, role, passcode } = req.body;
-
-  // Enforce authority passcode check
-  if (role === 'authority') {
-    if (passcode !== config.AUTHORITY_PASSCODE) {
-      throw forbidden('Invalid authority passcode');
-    }
-  }
-
+/**
+ * POST /register (Firebase authenticated)
+ * Creates a citizen profile. The client cannot choose or elevate its role.
+ */
+router.post('/register', async (req) => {
+  const identity = await requireAuth(req);
+  const name = typeof req.body?.name === 'string' && req.body.name.trim()
+    ? req.body.name.trim()
+    : identity.name;
   const repo = getRepo();
-  const user = await repo.upsertUser({ email, name, role });
-
-  // Issue 24-hour HS256 JWT
-  const token = signToken({
-    userId: user.userId,
-    name: user.name,
-    role: user.role,
+  const existing = await repo.getUser(identity.userId);
+  const user = await repo.upsertUser({
+    userId: identity.userId,
+    email: identity.email,
+    name,
+    role: existing?.role || 'citizen',
   });
-
-  const userResponse = {
-    userId: user.userId,
-    name: user.name,
-    email: user.email,
-    role: user.role,
-    createdAt: user.createdAt,
-  };
-
-  return json(200, {
-    token,
-    user: userResponse,
+  return json(201, {
+    user: {
+      userId: user.userId,
+      name: user.name,
+      email: user.email,
+      role: user.role === 'authority' ? 'authority' : 'citizen',
+      createdAt: user.createdAt,
+    },
   });
 });
 
@@ -161,7 +153,7 @@ router.post('/login', async (req) => {
  * Returns: { uploadUrl, imageKey }
  */
 router.post('/upload-url', async (req) => {
-  const user = requireAuth(req);
+  const user = await requireAuth(req);
   const details = validateUploadUrl(req.body);
   assertValid(details, 'Invalid upload-url request body');
 
@@ -184,7 +176,7 @@ router.post('/upload-url', async (req) => {
  * Returns: Issue (201 Created)
  */
 router.post('/issues', async (req) => {
-  const user = requireAuth(req);
+  const user = await requireAuth(req);
   const details = validateCreateIssue(req.body);
   assertValid(details, 'Invalid issue creation payload');
 
@@ -234,7 +226,7 @@ router.post('/issues', async (req) => {
  * Returns: { items: Issue[], nextCursor: string | null }
  */
 router.get('/issues', async (req) => {
-  const user = requireAuth(req);
+  const user = await requireAuth(req);
 
   const status = req.query?.status && VALID_STATUSES.includes(req.query.status) ? req.query.status : undefined;
   const category = req.query?.category && VALID_CATEGORIES.includes(req.query.category) ? req.query.category : undefined;
@@ -266,7 +258,7 @@ router.get('/issues', async (req) => {
  * Returns: Single Issue object
  */
 router.get('/issues/{id}', async (req) => {
-  const user = requireAuth(req);
+  const user = await requireAuth(req);
   const repo = getRepo();
   const issue = await repo.getIssue(req.params.id, user.userId);
 
@@ -284,7 +276,7 @@ router.get('/issues/{id}', async (req) => {
  * Returns: { upvoteCount: number, upvoted: boolean }
  */
 router.post('/issues/{id}/upvote', async (req) => {
-  const user = requireAuth(req);
+  const user = await requireAuth(req);
   const repo = getRepo();
   const result = await repo.toggleUpvote(req.params.id, user.userId);
 
@@ -308,7 +300,7 @@ router.post('/issues/{id}/upvote', async (req) => {
  * Returns: Updated Issue (200)
  */
 router.patch('/issues/{id}/status', async (req) => {
-  const user = requireRole(req, 'authority');
+  const user = await requireRole(req, 'authority');
   const details = validateStatusUpdate(req.body);
   assertValid(details, 'Invalid status transition request');
 
@@ -360,7 +352,7 @@ router.patch('/issues/{id}/status', async (req) => {
  * Returns: Updated Issue (200)
  */
 router.post('/issues/{id}/assign', async (req) => {
-  const user = requireRole(req, 'authority');
+  const user = await requireRole(req, 'authority');
   const details = validateAssignIssue(req.body);
   assertValid(details, 'Invalid issue assignment payload');
 
@@ -402,7 +394,7 @@ router.post('/issues/{id}/assign', async (req) => {
  * Returns: Blueprint Stats shape { totals, byStatus, byCategory, byDepartment }
  */
 router.get('/stats', async (req) => {
-  requireRole(req, 'authority');
+  await requireRole(req, 'authority');
   const repo = getRepo();
   const stats = await repo.getStats();
 
