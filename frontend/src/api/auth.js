@@ -1,38 +1,43 @@
-/**
- * Auth API Module
- * Conforms to docs/BLUEPRINT.md (Sections 6 & 7)
- */
-import client, { TOKEN_STORAGE_KEY, USER_STORAGE_KEY } from './client.js';
-import withMock from './adapter.js';
-import * as mockAuth from '../mock/mockAuth.js';
 
-/**
- * POST /login (public)
- * Authenticates citizen or authority and stores session credentials.
- *
- * @param {Object} credentials
- * @param {string} credentials.name
- * @param {string} credentials.email
- * @param {'citizen' | 'authority'} credentials.role
- * @param {string} [credentials.passcode]
- * @returns {Promise<{ token: string, user: { userId: string, name: string, email: string, role: string, createdAt: string } }>}
- */
-export async function login(credentials) {
-  return withMock(
-    async () => {
-      const response = await client.post('/login', credentials, { skipAuth: true });
-      if (response?.token && typeof window !== 'undefined') {
-        localStorage.setItem(TOKEN_STORAGE_KEY, response.token);
-        if (response.user) {
-          localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(response.user));
-        }
-      }
-      return response;
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  signOut,
+} from 'firebase/auth';
+
+import { auth } from '../firebase.js';
+
+export async function login({ email, password }) {
+  const result = await signInWithEmailAndPassword(auth, email, password);
+  const token = await result.user.getIdToken();
+
+  return {
+    token,
+    user: {
+      uid: result.user.uid,
+      email: result.user.email,
+      name: result.user.displayName || '',
     },
-    () => mockAuth.login(credentials)
-  );
+  };
 }
 
-export default {
-  login,
-};
+export async function register({ name, email, password }) {
+  const result = await createUserWithEmailAndPassword(auth, email, password);
+  await updateProfile(result.user, { displayName: name });
+
+  return {
+    token: await result.user.getIdToken(),
+    user: {
+      uid: result.user.uid,
+      email: result.user.email,
+      name,
+    },
+  };
+}
+
+export async function logout() {
+  await signOut(auth);
+}
+
+export default { login, register, logout };
