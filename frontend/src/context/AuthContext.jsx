@@ -1,111 +1,57 @@
-
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  useCallback,
-} from 'react';
-import {
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  updateProfile,
-  signOut,
-} from 'firebase/auth';
-import { auth } from '../firebase.js';
-import client from '../api/client.js';
+import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
 
 const AuthContext = createContext(null);
+const STORAGE_KEY = 'swadesh_demo_user';
+
+function readStoredUser() {
+  try {
+    const value = localStorage.getItem(STORAGE_KEY);
+    return value ? JSON.parse(value) : null;
+  } catch {
+    return null;
+  }
+}
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState(() => readStoredUser());
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-      if (!firebaseUser) {
-        setUser(null);
-        setIsLoading(false);
-        return;
-      }
-
-      try {
-        const token = await firebaseUser.getIdToken();
-        const response = await client.get('/me', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setUser({
-          uid: firebaseUser.uid,
-          email: firebaseUser.email,
-          name: firebaseUser.displayName || response.user?.name || '',
-          role: response.user?.role || 'citizen',
-        });
-      } catch (error) {
-        console.error('Profile loading failed:', error);
-        setUser(null);
-      } finally {
-        setIsLoading(false);
-      }
-    });
-
-    return unsubscribe;
+    setIsLoading(false);
   }, []);
 
-  const login = useCallback(async ({ email, password }) => {
-    const result = await signInWithEmailAndPassword(auth, email, password);
-    const token = await result.user.getIdToken();
-    const profile = await client.get('/me', {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-
-    const currentUser = {
-      uid: result.user.uid,
-      email: result.user.email,
-      name: result.user.displayName || profile.user?.name || '',
-      role: profile.user?.role || 'citizen',
-    };
-    setUser(currentUser);
-    return { user: currentUser };
+  const login = useCallback(async ({ role }) => {
+    if (!['citizen', 'authority'].includes(role)) {
+      throw new Error('Choose a valid demo account.');
+    }
+    const nextUser = role === 'authority'
+      ? { uid: 'demo-authority-001', email: 'authority@swadesh.demo', name: 'Demo Authority', role: 'authority' }
+      : { uid: 'demo-citizen-001', email: 'citizen@swadesh.demo', name: 'Demo Citizen', role: 'citizen' };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(nextUser));
+    setUser(nextUser);
+    return { user: nextUser };
   }, []);
 
-  const register = useCallback(async ({ name, email, password }) => {
-    const result = await createUserWithEmailAndPassword(auth, email, password);
-    await updateProfile(result.user, { displayName: name });
-    const token = await result.user.getIdToken();
-
-    const profile = await client.post('/register', { name }, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-
-    const currentUser = {
-      uid: result.user.uid,
-      email: result.user.email,
-      name,
-      role: profile.user?.role || 'citizen',
-    };
-    setUser(currentUser);
-    return { user: currentUser };
+  const register = useCallback(async () => {
+    throw new Error('Registration is disabled in classroom demo mode. Use a demo account.');
   }, []);
 
   const logout = useCallback(async () => {
-    await signOut(auth);
+    localStorage.removeItem(STORAGE_KEY);
     setUser(null);
   }, []);
 
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        token: null,
-        isAuthenticated: Boolean(user),
-        role: user?.role || 'citizen',
-        isLoading,
-        login,
-        register,
-        logout,
-      }}
-    >
+    <AuthContext.Provider value={{
+      user,
+      token: null,
+      isAuthenticated: Boolean(user),
+      role: user?.role || 'citizen',
+      isLoading,
+      login,
+      register,
+      logout,
+    }}>
       {children}
     </AuthContext.Provider>
   );

@@ -76,6 +76,7 @@ export function validateConfig(env = process.env) {
     USERS_TABLE: env.USERS_TABLE.trim(),
     IMAGE_BUCKET: env.IMAGE_BUCKET.trim(),
     FIREBASE_PROJECT_ID: env.FIREBASE_PROJECT_ID.trim(),
+    DEMO_MODE: String(env.DEMO_MODE || 'false').toLowerCase(),
     DATA_STORE: dataStore,
     S3_MODE: s3Mode,
     LOG_LEVEL: logLevel,
