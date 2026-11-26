@@ -471,6 +471,34 @@ export async function handler(event, context = {}) {
   const method = (event?.requestContext?.http?.method || 'GET').toUpperCase();
   const requestId = event?.requestContext?.requestId || context?.awsRequestId || 'req-local';
   const headers = normalizeHeaders(event?.headers);
+  
+  const origin = headers.origin || '';
+  const allowedOrigins = [
+    'https://swadesh-aws.vercel.app',
+    'http://localhost:5173',
+  ];
+
+  const corsHeaders = {
+    'access-control-allow-origin': allowedOrigins.includes(origin)
+      ? origin
+      : 'https://swadesh-aws.vercel.app',
+    'access-control-allow-methods':
+      'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+    'access-control-allow-headers':
+      'Authorization, Content-Type',
+    'access-control-max-age': '3000',
+    'vary': 'Origin',
+  };
+
+  // Handle browser CORS preflight before application routing.
+  if (method === 'OPTIONS') {
+    return {
+      statusCode: 204,
+      headers: corsHeaders,
+      body: '',
+    };
+  }
+
   const query = event?.queryStringParameters || {};
 
   let statusCode = 200;
@@ -566,7 +594,13 @@ export async function handler(event, context = {}) {
     });
   }
 
-  return response;
+  return {
+  ...response,
+  headers: {
+    ...response.headers,
+    ...corsHeaders,
+  },
+};
 }
 
 export { router };
